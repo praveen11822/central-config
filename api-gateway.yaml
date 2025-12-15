@@ -8,7 +8,7 @@ spring:
   cloud:
     gateway:
 
-      # 1️⃣ Explicit routes (primary)
+      
       server:
         webmvc:
           routes:
