@@ -12,6 +12,9 @@ spring:
     show-sql: true
 
 jwt:
+  secret: ks5QUfro7ArNrADbK/PN7VSMgh5kpeCqjXuFroti9ag=
   access-token-expiration: 900000     # 15 minutes
   refresh-token-expiration: 604800000 # 7 days
+
+
 
