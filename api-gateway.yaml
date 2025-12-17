@@ -7,16 +7,36 @@ spring:
 
   cloud:
     gateway:
+      routes:
+        # AUTH SERVICE (NO JWT REQUIRED)
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
 
-      
-      server:
-        webmvc:
-          routes:
-            - id: auth-service
-              uri: lb://auth-service
-              predicates:
-                - Path=/auth/**
+        # PROTECTED SERVICES (JWT REQUIRED)
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/accounts/**
+          filters:
+            - JwtAuthFilter
 
-      
+        - id: transaction-service
+          uri: lb://TRANSACTION-SERVICE
+          predicates:
+            - Path=/transactions/**
+          filters:
+            - JwtAuthFilter
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
 

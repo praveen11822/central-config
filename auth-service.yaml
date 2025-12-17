@@ -11,10 +11,7 @@ spring:
       ddl-auto: update
     show-sql: true
 
-jwt:
-  secret: STvtWyNSbhkDvUZfM3LU8przbgeSLzIrjrKhSby4xk0=
-  access-token-expiration: 900000     # 15 minutes
-  refresh-token-expiration: 604800000 # 7 days
+
 
 
 
