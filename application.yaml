@@ -20,6 +20,6 @@ management:
 
 
 jwt:
-  secret: STvtWyNSbhkDvUZfM3LU8przbgeSLzIrjrKhSby4xk0=
+  secret: STvtWyNSbhkDvUZfM3LU8przbgeSLzIrjrKhSby4xk0=springbootmicorserviceproject
   access-token-expiration: 900000     # 15 minutes
   refresh-token-expiration: 604800000 # 7 days
