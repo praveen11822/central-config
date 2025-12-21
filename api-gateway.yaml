@@ -8,11 +8,19 @@ spring:
   cloud:
     gateway:
       routes:
-        # AUTH SERVICE (NO JWT REQUIRED)
-        - id: auth-service
+         # PUBLIC AUTH APIs
+        - id: auth-public
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/auth/**
+            - Path=/auth/register,/auth/login,/auth/refresh
+
+        # PROTECTED AUTH APIs
+        - id: auth-protected
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/change-password
+          filters:
+            - JwtAuthFilter
 
         # PROTECTED SERVICES (JWT REQUIRED)
         - id: account-service
