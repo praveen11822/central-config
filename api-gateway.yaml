@@ -23,10 +23,10 @@ spring:
             - JwtAuthFilter
 
         # PROTECTED SERVICES (JWT REQUIRED)
-        - id: account-service
-          uri: lb://ACCOUNT-SERVICE
+        - id: user-service
+          uri: lb://USER-SERVICE
           predicates:
-            - Path=/accounts/**
+            - Path=/users/**
           filters:
             - JwtAuthFilter
 
