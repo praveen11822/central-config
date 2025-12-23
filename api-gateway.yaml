@@ -3,20 +3,28 @@ server:
 
 spring:
   application:
-    name: api-gateway
+    name: API-GATEWAY
 
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
       routes:
-         # PUBLIC AUTH APIs
+
+        # =========================
+        # PUBLIC AUTH APIs (NO JWT)
+        # =========================
         - id: auth-public
           uri: lb://AUTH-SERVICE
           predicates:
-             - Path=/auth/register
-             - Path=/auth/login
-             - Path=/auth/refresh
+            - Path=/auth/register,/auth/login,/auth/refresh
 
-        # PROTECTED AUTH APIs
+        # =========================
+        # PROTECTED AUTH APIs (JWT)
+        # =========================
         - id: auth-protected
           uri: lb://AUTH-SERVICE
           predicates:
@@ -24,7 +32,9 @@ spring:
           filters:
             - JwtAuthFilter
 
-        # PROTECTED SERVICES (JWT REQUIRED)
+        # =========================
+        # USER SERVICE (JWT)
+        # =========================
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
@@ -32,6 +42,9 @@ spring:
           filters:
             - JwtAuthFilter
 
+        # =========================
+        # TRANSACTION SERVICE (JWT)
+        # =========================
         - id: transaction-service
           uri: lb://TRANSACTION-SERVICE
           predicates:
@@ -39,14 +52,29 @@ spring:
           filters:
             - JwtAuthFilter
 
+# =========================
+# EUREKA CONFIG
+# =========================
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
 
+# =========================
+# ACTUATOR
+# =========================
 management:
   endpoints:
     web:
       exposure:
         include: health,info
 
+# =========================
+# LOGGING (DEBUG GATEWAY)
+# =========================
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
