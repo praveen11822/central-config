@@ -12,7 +12,9 @@ spring:
         - id: auth-public
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/auth/register,/auth/login,/auth/refresh
+             - Path=/auth/register
+             - Path=/auth/login
+             - Path=/auth/refresh
 
         # PROTECTED AUTH APIs
         - id: auth-protected
