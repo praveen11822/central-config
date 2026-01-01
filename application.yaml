@@ -20,6 +20,7 @@ eureka:
   instance:
     ip-address: 127.0.0.1           # <-- added this line
     prefer-ip-address: true
+     hostname: localhost
     instance-id: ${spring.application.name}:${server.port}
 
 management:
