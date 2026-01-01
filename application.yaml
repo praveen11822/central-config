@@ -11,14 +11,16 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:9090   # Admin Server
+        url: http://localhost:9090
+        instance:
+          prefer-ip: true   # ⭐ FIX FOR UnknownHostException
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    ip-address: 127.0.0.1           # <-- added this line
+    ip-address: 127.0.0.1
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
 
@@ -33,7 +35,7 @@ management:
 
   tracing:
     sampling:
-      probability: 1.0   # 100% tracing (reduce to 0.1 in prod)
+      probability: 1.0
 
   zipkin:
     tracing:
@@ -41,5 +43,5 @@ management:
 
 jwt:
   secret: STvtWyNSbhkDvUZfM3LU8przbgeSLzIrjrKhSby4xk0=
-  access-token-expiration: 900000        # 15 minutes
-  refresh-token-expiration: 604800000    # 7 days
+  access-token-expiration: 900000
+  refresh-token-expiration: 604800000
