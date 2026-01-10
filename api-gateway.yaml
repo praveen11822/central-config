@@ -43,12 +43,12 @@ spring:
             - JwtAuthFilter
 
         # =========================
-        # TRANSACTION SERVICE (JWT)
+        # ACCOUNT SERVICE (JWT)
         # =========================
-        - id: transaction-service
-          uri: lb://TRANSACTION-SERVICE
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/transactions/**
+            - Path=/account/**
           filters:
             - JwtAuthFilter
 
