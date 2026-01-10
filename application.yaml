@@ -1,13 +1,4 @@
 spring:
-  datasource:
-    username: root
-    password: root
-
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-
   boot:
     admin:
       client:
