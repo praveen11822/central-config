@@ -28,7 +28,7 @@ spring:
         - id: auth-protected
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/auth/change-password
+            - Path=/auth/change-password,/auth/delete-user
           filters:
             - JwtAuthFilter
 
