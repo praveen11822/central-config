@@ -52,6 +52,15 @@ spring:
           filters:
             - JwtAuthFilter
 
+        # =========================
+        # TRANSACTION SERVICE (JWT)
+        # =========================
+        - id: transaction-service
+          uri: lb://TRANSACTION-SERVICE
+          predicates:
+            - Path=/transactions/**
+          filters:
+            - JwtAuthFilter
 # =========================
 # EUREKA CONFIG
 # =========================
